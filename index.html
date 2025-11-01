@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Learn & Speak English</title>
+  <style>
+   body, input, button, select, .ipa, .vn{
+    font-family: 'Segoe UI', 'Arial', 'Noto Sans', 'DejaVu Sans', 'Liberation Sans', 'sans-serif', 'Charis SIL', 'Doulos SIL', 'Gentium Plus', 'Tahoma';
+   }
+  </style>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <header class="topbar">
+  <!-- Topic selector moved to header (replaces brand) -->
+  <div class="topic-selector topbar-topic">
+   <label for="topicSelect" class="sr-only">Topic:</label>
+   <div class="custom-dropdown">
+    <button id="topicSelect" class="dropdown-button"></button>
+    <div class="dropdown-list" id="dropdownList">
+     <!-- Search Box -->
+     <div class="search-container">
+      <input type="text" id="topicSearch" placeholder="🔍 Search topics..." class="search-input">
+     </div>
+
+     <!-- Categories -->
+     <div class="category-grid">
+      <div class="category-section">
+       <div class="category-header" data-category="daily">
+        <span class="category-icon">🏠</span>
+        <span class="category-title">Daily Life</span>
+        <span class="category-count">(4)</span>
+       </div>
+       <div class="category-items">
+        <li class="dropdown-item" data-value="0">Asking for Directions - Hỏi đường</li>
+        <li class="dropdown-item" data-value="12">Meeting a Friend - Gặp bạn bè</li>
+        <li class="dropdown-item" data-value="17">Making a Phone Call - Gọi điện thoại</li>
+        <li class="dropdown-item" data-value="18">At the Coffee Shop - Ở quán cà phê</li>
+       </div>
+      </div>
+
+      <div class="category-section">
+       <div class="category-header" data-category="travel">
+        <span class="category-icon">✈️</span>
+        <span class="category-title">Travel</span>
+        <span class="category-count">(4)</span>
+       </div>
+       <div class="category-items">
+        <li class="dropdown-item" data-value="1">Airport - Ở sân bay</li>
+        <li class="dropdown-item" data-value="10">Hotel Booking - Đặt phòng khách sạn</li>
+        <li class="dropdown-item" data-value="5">Hotel Reception - Ở lễ tân khách sạn</li>
+        <li class="dropdown-item" data-value="11">Bus Tickets - Mua vé xe buýt</li>
+       </div>
+      </div>
+
+      <div class="category-section">
+       <div class="category-header" data-category="shopping">
+        <span class="category-icon">🛒</span>
+        <span class="category-title">Shopping</span>
+        <span class="category-count">(4)</span>
+       </div>
+       <div class="category-items">
+        <li class="dropdown-item" data-value="9">Supermarket - Ở siêu thị</li>
+        <li class="dropdown-item" data-value="14">Shopping for Clothes - Mua quần áo</li>
+        <li class="dropdown-item" data-value="19">At the Pharmacy - Ở hiệu thuốc</li>
+        <li class="dropdown-item" data-value="21">Hair Salon - Ở tiệm cắt tóc</li>
+       </div>
+      </div>
+
+      <div class="category-section">
+       <div class="category-header" data-category="food">
+        <span class="category-icon">🍽️</span>
+        <span class="category-title">Food & Drink</span>
+        <span class="category-count">(2)</span>
+       </div>
+       <div class="category-items">
+        <li class="dropdown-item" data-value="8">Restaurant - Ở nhà hàng</li>
+        <li class="dropdown-item" data-value="13">Ordering Food - Gọi đồ ăn</li>
+       </div>
+      </div>
+
+      <div class="category-section">
+       <div class="category-header" data-category="health">
+        <span class="category-icon">🏥</span>
+        <span class="category-title">Health</span>
+        <span class="category-count">(1)</span>
+       </div>
+       <div class="category-items">
+        <li class="dropdown-item" data-value="3">Doctor - Ở phòng khám bác sĩ</li>
+       </div>
+      </div>
+
+      <div class="category-section">
+       <div class="category-header" data-category="entertainment">
+        <span class="category-icon">🎬</span>
+        <span class="category-title">Entertainment</span>
+        <span class="category-count">(2)</span>
+       </div>
+       <div class="category-items">
+        <li class="dropdown-item" data-value="20">Movie Theater - Ở rạp chiếu phim</li>
+        <li class="dropdown-item" data-value="6">Library - Ở thư viện</li>
+       </div>
+      </div>
+
+      <div class="category-section">
+       <div class="category-header" data-category="work">
+        <span class="category-icon">💼</span>
+        <span class="category-title">Work & Business</span>
+        <span class="category-count">(4)</span>
+       </div>
+       <div class="category-items">
+        <li class="dropdown-item" data-value="16">Job Interview - Phỏng vấn việc làm</li>
+        <li class="dropdown-item" data-value="2">Bank - Ở ngân hàng</li>
+        <li class="dropdown-item" data-value="7">Post Office - Ở bưu điện</li>
+        <li class="dropdown-item" data-value="4">Gym - Ở phòng gym</li>
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- Modal fallback for small screens -->
+    <div id="dropdownModal" class="dropdown-modal" aria-hidden="true">
+     <div class="dropdown-modal-inner">
+      <button id="dropdownModalClose" class="btn secondary" style="margin-bottom:8px;">Close ✕</button>
+      <div class="dropdown-modal-content"></div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- progress removed -->
+  <!-- topic-selector moved into compact-controls (full dropdown is inside the toolbar now) -->
+  <!-- user input moved into compact-controls to sit inline with speed control -->
+
+  <!-- Compact Controls Toolbar (items preserved, now inline) -->
+  <div class="compact-controls" role="toolbar" aria-label="Compact controls">
+   <!-- progress controls removed -->
+
+   <div class="compact-group">
+    <button id="toggleIPA" class="btn pill toggle active" aria-pressed="true" title="Toggle IPA pronunciation">IPA</button>
+    <button id="toggleVN" class="btn pill toggle active" aria-pressed="true" title="Toggle Vietnamese translation">VN</button>
+    <button id="toggleTheme" class="btn pill toggle" aria-pressed="false" title="Toggle theme">🌙</button>
+   </div>
+
+   <div class="compact-group playback-inline">
+    <button id="playFullTwoVoices" class="btn pill primary" title="Play full dialogue with two voices">🎧 Play All</button>
+    <button id="pauseResume" class="btn pill secondary" title="Pause or resume full playback" disabled>⏸️ Pause</button>
+    <button id="restartFromStart" class="btn pill secondary" title="Restart playback from the first sentence">🔄 Restart</button>
+ <button id="clearSelection" class="btn pill secondary" title="Clear selected dialogue">🧹 Clear</button>
+ <button id="toggleUserInput" class="btn pill secondary" title="Show / hide English input" aria-pressed="false">📝 Show</button>
+    <div class="rate-control inline-rate" aria-label="Speech rate control">
+     <span class="rate-icon">⚡</span>
+     <span class="rate-label">Speed</span>
+     <span class="rate-value" id="speechRateVal">0.72x</span>
+     <input id="speechRate" type="range" min="0.4" max="1.2" step="0.01" value="0.72" class="rate-slider" aria-valuemin="0.4" aria-valuemax="1.2" aria-valuenow="0.72" />
+    </div>
+
+    <!-- user input moved below header for better layout -->
+   </div>
+  </div>
+  <div id="userInputContainer" class="user-input-container collapsed" style="width:100%;padding:0 16px;box-sizing:border-box;">
+   <div class="user-input-box" style="width:100%;padding:12px 0;box-sizing:border-box;">
+    <div style="flex:1 1 auto;display:flex;flex-direction:column;gap:8px">
+    <textarea id="userInputText" class="user-input-text" placeholder="Type your English sentence or paragraph here..."></textarea>
+    <div style="display:flex;gap:8px;align-items:center">
+     <button id="translateDirToggle" class="btn secondary" title="Toggle translation direction">EN→VI</button>
+     <button id="translateInput" class="btn secondary" title="Translate">Translate ↓</button>
+     <button id="clearInputText" class="btn secondary" title="Clear input">✖ Clear</button>
+     <button id="playUserInput" class="btn pill" title="Play your sentence">▶</button>
+    </div>
+    <div id="translationResult" class="translation-result" aria-live="polite" style="display:none;margin-top:6px;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg-alt);"></div>
+   </div>
+  </div>
+ </header>
+
+ <main class="container">
+  <section class="chat-area" id="chatArea" aria-live="polite"></section>
+ 
+ </main>
+
+ <footer class="footer">
+  <small>Each sentence shows IPA and closest Vietnamese meaning. Use play buttons to hear pronunciation. Light/Dark theme supported.</small>
+ </footer>
+
+ <!-- Scroll to top of dialogue button -->
+ <button id="scrollToTopBtn" class="scroll-top-btn" title="Scroll to top of dialogue" aria-hidden="true">⬆️ Top</button>
+
+ <script src="data.js"></script>
+ <script src="script.js"></script>
+</body>
+</html>
