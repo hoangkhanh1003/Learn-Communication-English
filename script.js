@@ -1288,6 +1288,7 @@ document.addEventListener("DOMContentLoaded", () => {
                               const p2 = document.createElement('span');
                               p2.className = 'topic-vn';
                               p2.textContent = 'Chọn chủ đề';
+dropdownButton.appendChild(p2);
                               dropdownButton.classList.remove('open');
                         }
                         // clear chat area
