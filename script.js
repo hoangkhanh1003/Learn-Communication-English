@@ -1,10 +1,3 @@
-// ...existing code...
-// Dữ liệu học tập được tách sang file data.js
-// Đảm bảo file index.html có dòng sau trước script.js:
-// <script src="data.js"></script>
-// <script src="script.js"></script>
-// dialogues và titleVN sẽ được lấy từ data.js
-
 // Progress tracking removed (UI-only app now)
 const names = { A: "Anna", B: "Ben" };
 const avatars = { A: "https://banobagi.vn/wp-content/uploads/2025/04/anh-avatar-kute-1.jpeg", B: "https://ekidenglish.edu.vn/wp-content/uploads/2025/04/anh-avatar-kute-4.jpeg" };
@@ -864,7 +857,7 @@ function handleTopicChange() {
       try { const chat = document.getElementById('chatArea'); if (chat) { chat.querySelectorAll('.turn.playing').forEach(el => el.classList.remove('playing')); chat.classList.remove('full-play'); } } catch(e) {}
       try { if (window.currentPlaybackController) delete window.currentPlaybackController; } catch(e) {}
       // reset play/pause button states
-      try { const btnPlay = document.getElementById('playFullTwoVoices'); if (btnPlay) { btnPlay.disabled = false; btnPlay.textContent = 'Play All (2 voices)'; } const btnPause = document.getElementById('pauseResume'); if (btnPause) { btnPause.disabled = true; btnPause.innerHTML = '⏸️ Pause'; } } catch(e) {}
+      try { const btnPlay = document.getElementById('playFullTwoVoices'); if (btnPlay) { btnPlay.disabled = false; btnPlay.innerHTML = '🎧 Play All'; } const btnPause = document.getElementById('pauseResume'); if (btnPause) { btnPause.disabled = true; btnPause.innerHTML = '⏸️ Pause'; } } catch(e) {}
       
       // Re-render the selected dialogue
       renderAll();
@@ -1044,7 +1037,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                                       btnPause.innerHTML = '⏸️ Pause';
                                                 }
                                                 btnPlayFull.disabled = false;
-                                                btnPlayFull.textContent = 'Play All (2 voices)';
+                                                btnPlayFull.innerHTML = '🎧 Play All';
                                           }
                                     };
 
@@ -1307,7 +1300,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         try { const chat = document.getElementById('chatArea'); if (chat) { chat.querySelectorAll('.turn.playing').forEach(el => el.classList.remove('playing')); chat.classList.remove('full-play'); } } catch(e) {}
                         try { if (window.currentPlaybackController) delete window.currentPlaybackController; } catch(e) {}
                         // reset play/pause button states
-                        try { const btnPlay = document.getElementById('playFullTwoVoices'); if (btnPlay) { btnPlay.disabled = false; btnPlay.textContent = 'Play All (2 voices)'; } const btnPause = document.getElementById('pauseResume'); if (btnPause) { btnPause.disabled = true; btnPause.innerHTML = '⏸️ Pause'; } } catch(e) {}
+                        try { const btnPlay = document.getElementById('playFullTwoVoices'); if (btnPlay) { btnPlay.disabled = false; btnPlay.innerHTML = '🎧 Play All'; } const btnPause = document.getElementById('pauseResume'); if (btnPause) { btnPause.disabled = true; btnPause.innerHTML = '⏸️ Pause'; } } catch(e) {}
                         renderAll();
                         // clear selection classes
                         document.querySelectorAll('.dropdown-item.selected').forEach(el => el.classList.remove('selected'));
